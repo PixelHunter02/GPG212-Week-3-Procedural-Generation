@@ -10,6 +10,7 @@ TagManager:
   - World
   - NoMask
   - Dead
+  - GameOver
   layers:
   - Default
   - TransparentFX

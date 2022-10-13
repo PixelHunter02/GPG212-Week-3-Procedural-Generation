@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using TMPro;
+using MoreMountains.TopDownEngine;
+using System.Xml.Serialization;
 
 public class GenerateCorridor : DungeonGenerator
 {
@@ -17,19 +19,28 @@ public class GenerateCorridor : DungeonGenerator
     public TMP_Text enemiesText;
     public static int enemiesLeft;
     public static int enemiesThisGame;
+    public GameObject gameOver;
+
+    private void OnEnable()
+    {
+        RemoveEnemiesAtSpawn.textSetup += SetupText;
+        RemoveEnemiesAtSpawn.textSetup += UpdateText;
+        Health.enemyDead += UpdateText;
+        Health.enemyDead += CheckUpdate;
+    }
+
+    private void OnDisable()
+    {
+        RemoveEnemiesAtSpawn.textSetup -= SetupText;
+        RemoveEnemiesAtSpawn.textSetup -= UpdateText;
+        Health.enemyDead -= UpdateText;
+        Health.enemyDead -= CheckUpdate;
+    }
 
     private void Start() {
         roomsCreated = 0;
         tilePlacement.Clear();
         CorridorFirstGeneration();
-        enemiesThisGame = GameObject.FindGameObjectsWithTag("Enemy").Count();
-        enemiesLeft = GameObject.FindGameObjectsWithTag("Enemy").Count();
-        enemiesText.text = "Enemies Left: " + enemiesLeft + " / " + enemiesThisGame;
-    }
-
-    private void Update() {
-        enemiesLeft = GameObject.FindGameObjectsWithTag("Enemy").Count();
-        enemiesText.text = "Enemies Left: " + enemiesLeft + " / " + enemiesThisGame;
     }
 
     protected override void GenerateFloor()
@@ -80,6 +91,24 @@ public class GenerateCorridor : DungeonGenerator
             currentPosition = corridor[corridor.Count - 1];
             potentialRoomPositions.Add(currentPosition);
             floorPositions.UnionWith(corridor);
+        }
+    }
+
+    private void UpdateText()
+    {
+        enemiesLeft = GameObject.FindGameObjectsWithTag("Enemy").Count();
+        enemiesText.text = "Enemies Left: " + enemiesLeft + " / " + enemiesThisGame;
+    }
+
+    private void SetupText()
+    {
+        enemiesThisGame = GameObject.FindGameObjectsWithTag("Enemy").Count();
+    }
+    private void CheckUpdate()
+    {
+        if(enemiesLeft <= 0)
+        {
+            gameOver.SetActive(true);
         }
     }
 }

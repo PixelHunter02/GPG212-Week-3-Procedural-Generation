@@ -36,7 +36,7 @@ public class DungeonGenerator : AbstractDungeonGenerator
                 int random = UnityEngine.Random.Range(0,2000);
                 if(random == 0 && floorPosition != new Vector2Int(0,0))
                 {
-                    Instantiate(enemyPrefab, new Vector3(floorPosition.x, floorPosition.y, 0f),Quaternion.identity);
+                    Instantiate(enemyPrefab, new Vector3(floorPosition.x +0.6f, floorPosition.y, 0f),Quaternion.identity);
                 }
             }
             if(randomWalkParameters.startRandomlyEachIteration)

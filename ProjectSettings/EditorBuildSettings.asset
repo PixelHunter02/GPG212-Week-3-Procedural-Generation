@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/TopDownEngine/Demos/Minimal2D/MinimalScene2D.unity
-    guid: 55ddb45e2869f6e488e05e2d4e442e06
+    path: Assets/Scenes/Main Menu.unity
+    guid: b321af5e45e1e3a459d5ec892319fd7c
+  - enabled: 1
+    path: Assets/Scenes/Main Game.unity
+    guid: 3a007f66fbd0f984abba46a2f961d0b0
   m_configObjects: {}

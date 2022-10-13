@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using MoreMountains.Tools;
 using MoreMountains.Feedbacks;
+using System.Threading.Tasks;
 
 namespace MoreMountains.TopDownEngine
 {
@@ -36,6 +37,12 @@ namespace MoreMountains.TopDownEngine
 	[AddComponentMenu("TopDown Engine/Character/Core/Health")] 
 	public class Health : MMMonoBehaviour
 	{
+		public delegate void EnemyDead();
+		public static EnemyDead enemyDead;
+
+		public delegate void PlayerDead();
+		public static PlayerDead playerDead;
+
 		[MMInspectorGroup("Bindings", true, 3)]
 
 		/// the model to disable (if set so)
@@ -481,8 +488,16 @@ namespace MoreMountains.TopDownEngine
 				if (MasterHealth.CurrentHealth <= 0)
 				{
 					MasterHealth.CurrentHealth = 0;
-					this.gameObject.tag = "Dead";
-					MasterHealth.Kill();
+                    if (this.gameObject.tag == "Enemy")
+                    {
+                        this.gameObject.tag = "Dead";
+                        enemyDead?.Invoke();
+                    }
+                    else
+                    {
+                        playerDead?.Invoke();
+                    }
+                    MasterHealth.Kill();
 				}
 			}
 			else
@@ -490,7 +505,15 @@ namespace MoreMountains.TopDownEngine
 				if (CurrentHealth <= 0)
 				{
 					CurrentHealth = 0;
-					this.gameObject.tag = "Dead";
+					if ( this.gameObject.tag == "Enemy")
+					{
+                        this.gameObject.tag = "Dead";
+                        enemyDead?.Invoke();
+                    }
+					else
+					{
+						playerDead?.Invoke();
+					}
 					Kill();
 				}
 					
