@@ -11,6 +11,7 @@ TagManager:
   - NoMask
   - Dead
   - GameOver
+  - GameManager
   layers:
   - Default
   - TransparentFX

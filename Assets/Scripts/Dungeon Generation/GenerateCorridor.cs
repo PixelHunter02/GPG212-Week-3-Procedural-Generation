@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,6 +21,10 @@ public class GenerateCorridor : DungeonGenerator
     public static int enemiesLeft;
     public static int enemiesThisGame;
     public GameObject gameOver;
+    [SerializeField]
+    GameObject playerWins;
+    [SerializeField]
+    GameObject mainGameUI;
 
     private void OnEnable()
     {
@@ -104,11 +109,15 @@ public class GenerateCorridor : DungeonGenerator
     {
         enemiesThisGame = GameObject.FindGameObjectsWithTag("Enemy").Count();
     }
-    private void CheckUpdate()
+    private async void CheckUpdate()
     {
         if(enemiesLeft <= 0)
         {
-            gameOver.SetActive(true);
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+            await Task.Delay(500);
+            mainGameUI.SetActive(false);
+            playerWins.SetActive(true);
         }
     }
 }

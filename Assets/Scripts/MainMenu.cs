@@ -12,6 +12,10 @@ public class MainMenu : MonoBehaviour
     GameObject mainUIDeadCanvas;
     [SerializeField]
     GameObject hudUI;
+    [SerializeField]
+    GameObject howToPlayUI;
+    [SerializeField]
+    GameObject mainMenuUI;
     private void OnEnable()
     {
         Health.playerDead += PlayerDied;
@@ -39,5 +43,16 @@ public class MainMenu : MonoBehaviour
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("Main Menu");
+    }
+
+    public void BackToMainUI()
+    {
+        mainMenuUI.SetActive(true);
+        howToPlayUI.SetActive(false);
+    }
+    public void HowToPlay()
+    {
+        howToPlayUI.SetActive(true);
+        mainMenuUI.SetActive(false);
     }
 }

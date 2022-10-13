@@ -48,6 +48,8 @@ namespace MoreMountains.TopDownEngine
 		/// the model to disable (if set so)
 		[Tooltip("the model to disable (if set so)")]
 		public GameObject Model;
+
+		GameObject healthCrate;
 		
 		[MMInspectorGroup("Status", true, 29)]
 
@@ -225,6 +227,7 @@ namespace MoreMountains.TopDownEngine
 		protected virtual void Start()
 		{
 			GrabAnimator();
+			healthCrate = GameObject.FindGameObjectWithTag("GameManager").GetComponent<health>().healthCrate;
 		}
 		
 		/// <summary>
@@ -490,6 +493,11 @@ namespace MoreMountains.TopDownEngine
 					MasterHealth.CurrentHealth = 0;
                     if (this.gameObject.tag == "Enemy")
                     {
+						if(Random.Range(0,5) == 0)
+						{
+							Debug.Log("Spawned");
+							Instantiate(healthCrate, new Vector2(this.transform.position.x + 2f, this.transform.position.y),Quaternion.identity);
+						}
                         this.gameObject.tag = "Dead";
                         enemyDead?.Invoke();
                     }
@@ -508,6 +516,11 @@ namespace MoreMountains.TopDownEngine
 					if ( this.gameObject.tag == "Enemy")
 					{
                         this.gameObject.tag = "Dead";
+						if(Random.Range(0,5) == 0)
+						{
+							Debug.Log("Spawned");
+							Instantiate(healthCrate, new Vector2(this.transform.position.x + 2f, this.transform.position.y),Quaternion.identity);
+						}
                         enemyDead?.Invoke();
                     }
 					else

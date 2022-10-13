@@ -10024,7 +10024,7 @@ MonoBehaviour:
   InputAuthorized: 1
   AnalogInput: 0
   ScriptDrivenInput: 0
-  WalkSpeed: 6
+  WalkSpeed: 6.5
   ShouldSetMovement: 1
   IdleThreshold: 0.05
   Acceleration: 10
@@ -10041,7 +10041,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1498750440386690}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d103439fc2940e347937487a70ea01e3, type: 3}
   m_Name: 
@@ -10081,7 +10081,7 @@ MonoBehaviour:
   DashMode: 1
   DashSpace: 1
   DashDirection: {x: 1, y: 0, z: 0}
-  DashDistance: 6
+  DashDistance: 10
   DashDuration: 0.2
   DashCurve:
     serializedVersion: 2

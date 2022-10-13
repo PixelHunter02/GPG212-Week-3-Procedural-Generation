@@ -48,6 +48,7 @@ namespace MoreMountains.TopDownEngine
 
 			if (_inputManager.RunButton.State.CurrentState == MMInput.ButtonStates.ButtonDown || _inputManager.RunButton.State.CurrentState == MMInput.ButtonStates.ButtonPressed)
 			{
+				Debug.Log("Started Running");
 				RunStart();
 			}				
 			if (_inputManager.RunButton.State.CurrentState == MMInput.ButtonStates.ButtonUp)
