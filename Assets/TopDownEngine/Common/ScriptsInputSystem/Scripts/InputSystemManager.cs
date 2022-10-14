@@ -41,7 +41,7 @@ namespace MoreMountains.TopDownEngine
             InputActions.PlayerControls.SecondaryShoot.performed += context => { BindButton(context, SecondaryShootButton); };
             InputActions.PlayerControls.Interact.performed += context => { BindButton(context, InteractButton); };
             InputActions.PlayerControls.Reload.performed += context => { BindButton(context, ReloadButton); };
-            InputActions.PlayerControls.Pause.performed += context => { BindButton(context, PauseButton); };
+            //InputActions.PlayerControls.Pause.performed += context => { BindButton(context, PauseButton); };
             InputActions.PlayerControls.SwitchWeapon.performed += context => { BindButton(context, SwitchWeaponButton); };
             InputActions.PlayerControls.SwitchCharacter.performed += context => { BindButton(context, SwitchCharacterButton); };
             InputActions.PlayerControls.TimeControl.performed += context => { BindButton(context, TimeControlButton); };

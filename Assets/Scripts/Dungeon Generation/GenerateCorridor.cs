@@ -109,13 +109,12 @@ public class GenerateCorridor : DungeonGenerator
     {
         enemiesThisGame = GameObject.FindGameObjectsWithTag("Enemy").Count();
     }
-    private async void CheckUpdate()
+    private void CheckUpdate()
     {
         if(enemiesLeft <= 0)
         {
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
-            await Task.Delay(500);
             mainGameUI.SetActive(false);
             playerWins.SetActive(true);
         }
